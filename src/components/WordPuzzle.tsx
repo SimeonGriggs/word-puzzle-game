@@ -18,73 +18,6 @@ interface FoundWord {
   cells: Position[];
 }
 
-export const createInitialGrid = (): Cell[][] => [
-  [
-    { letter: "N", isSelected: false, isHighlighted: false, row: 0, col: 0 },
-    { letter: "O", isSelected: false, isHighlighted: false, row: 0, col: 1 },
-    { letter: "A", isSelected: false, isHighlighted: false, row: 0, col: 2 },
-    { letter: "M", isSelected: false, isHighlighted: false, row: 0, col: 3 },
-    { letter: "E", isSelected: false, isHighlighted: false, row: 0, col: 4 },
-    { letter: "U", isSelected: false, isHighlighted: false, row: 0, col: 5 },
-  ],
-  [
-    { letter: "A", isSelected: false, isHighlighted: false, row: 1, col: 0 },
-    { letter: "L", isSelected: false, isHighlighted: false, row: 1, col: 1 },
-    { letter: "I", isSelected: false, isHighlighted: false, row: 1, col: 2 },
-    { letter: "S", isSelected: false, isHighlighted: false, row: 1, col: 3 },
-    { letter: "T", isSelected: false, isHighlighted: false, row: 1, col: 4 },
-    { letter: "N", isSelected: false, isHighlighted: false, row: 1, col: 5 },
-  ],
-  [
-    { letter: "O", isSelected: false, isHighlighted: false, row: 2, col: 0 },
-    { letter: "R", isSelected: false, isHighlighted: false, row: 2, col: 1 },
-    { letter: "G", isSelected: false, isHighlighted: false, row: 2, col: 2 },
-    { letter: "T", isSelected: false, isHighlighted: false, row: 2, col: 3 },
-    { letter: "C", isSelected: false, isHighlighted: false, row: 2, col: 4 },
-    { letter: "A", isSelected: false, isHighlighted: false, row: 2, col: 5 },
-  ],
-  [
-    { letter: "C", isSelected: false, isHighlighted: false, row: 3, col: 0 },
-    { letter: "R", isSelected: false, isHighlighted: false, row: 3, col: 1 },
-    { letter: "K", isSelected: false, isHighlighted: false, row: 3, col: 2 },
-    { letter: "Y", isSelected: false, isHighlighted: false, row: 3, col: 3 },
-    { letter: "D", isSelected: false, isHighlighted: false, row: 3, col: 4 },
-    { letter: "N", isSelected: false, isHighlighted: false, row: 3, col: 5 },
-  ],
-  [
-    { letter: "E", isSelected: false, isHighlighted: false, row: 4, col: 0 },
-    { letter: "P", isSelected: false, isHighlighted: false, row: 4, col: 1 },
-    { letter: "N", isSelected: false, isHighlighted: false, row: 4, col: 2 },
-    { letter: "C", isSelected: false, isHighlighted: false, row: 4, col: 3 },
-    { letter: "T", isSelected: false, isHighlighted: false, row: 4, col: 4 },
-    { letter: "I", isSelected: false, isHighlighted: false, row: 4, col: 5 },
-  ],
-  [
-    { letter: "S", isSelected: false, isHighlighted: false, row: 5, col: 0 },
-    { letter: "O", isSelected: false, isHighlighted: false, row: 5, col: 1 },
-    { letter: "A", isSelected: false, isHighlighted: false, row: 5, col: 2 },
-    { letter: "F", isSelected: false, isHighlighted: false, row: 5, col: 3 },
-    { letter: "R", isSelected: false, isHighlighted: false, row: 5, col: 4 },
-    { letter: "U", isSelected: false, isHighlighted: false, row: 5, col: 5 },
-  ],
-  [
-    { letter: "E", isSelected: false, isHighlighted: false, row: 6, col: 0 },
-    { letter: "E", isSelected: false, isHighlighted: false, row: 6, col: 1 },
-    { letter: "P", isSelected: false, isHighlighted: false, row: 6, col: 2 },
-    { letter: "N", isSelected: false, isHighlighted: false, row: 6, col: 3 },
-    { letter: "P", isSelected: false, isHighlighted: false, row: 6, col: 4 },
-    { letter: "S", isSelected: false, isHighlighted: false, row: 6, col: 5 },
-  ],
-  [
-    { letter: "H", isSelected: false, isHighlighted: false, row: 7, col: 0 },
-    { letter: "C", isSelected: false, isHighlighted: false, row: 7, col: 1 },
-    { letter: "S", isSelected: false, isHighlighted: false, row: 7, col: 2 },
-    { letter: "C", isSelected: false, isHighlighted: false, row: 7, col: 3 },
-    { letter: "H", isSelected: false, isHighlighted: false, row: 7, col: 4 },
-    { letter: "I", isSelected: false, isHighlighted: false, row: 7, col: 5 },
-  ],
-];
-
 // Valid words for the "munchies" theme
 const VALID_WORDS = new Set([
   "GRANOLA",
@@ -98,24 +31,111 @@ const VALID_WORDS = new Set([
 ]);
 
 const WordPuzzle = () => {
+  const createInitialGrid = (): Cell[][] => [
+    [
+      { letter: "N", isSelected: false, isHighlighted: false, row: 0, col: 0 },
+      { letter: "O", isSelected: false, isHighlighted: false, row: 0, col: 1 },
+      { letter: "A", isSelected: false, isHighlighted: false, row: 0, col: 2 },
+      { letter: "M", isSelected: false, isHighlighted: false, row: 0, col: 3 },
+      { letter: "E", isSelected: false, isHighlighted: false, row: 0, col: 4 },
+      { letter: "U", isSelected: false, isHighlighted: false, row: 0, col: 5 },
+    ],
+    [
+      { letter: "A", isSelected: false, isHighlighted: false, row: 1, col: 0 },
+      { letter: "L", isSelected: false, isHighlighted: false, row: 1, col: 1 },
+      { letter: "I", isSelected: false, isHighlighted: false, row: 1, col: 2 },
+      { letter: "S", isSelected: false, isHighlighted: false, row: 1, col: 3 },
+      { letter: "T", isSelected: false, isHighlighted: false, row: 1, col: 4 },
+      { letter: "N", isSelected: false, isHighlighted: false, row: 1, col: 5 },
+    ],
+    [
+      { letter: "O", isSelected: false, isHighlighted: false, row: 2, col: 0 },
+      { letter: "R", isSelected: false, isHighlighted: false, row: 2, col: 1 },
+      { letter: "G", isSelected: false, isHighlighted: false, row: 2, col: 2 },
+      { letter: "T", isSelected: false, isHighlighted: false, row: 2, col: 3 },
+      { letter: "C", isSelected: false, isHighlighted: false, row: 2, col: 4 },
+      { letter: "A", isSelected: false, isHighlighted: false, row: 2, col: 5 },
+    ],
+    [
+      { letter: "C", isSelected: false, isHighlighted: false, row: 3, col: 0 },
+      { letter: "R", isSelected: false, isHighlighted: false, row: 3, col: 1 },
+      { letter: "K", isSelected: false, isHighlighted: false, row: 3, col: 2 },
+      { letter: "Y", isSelected: false, isHighlighted: false, row: 3, col: 3 },
+      { letter: "D", isSelected: false, isHighlighted: false, row: 3, col: 4 },
+      { letter: "N", isSelected: false, isHighlighted: false, row: 3, col: 5 },
+    ],
+    [
+      { letter: "E", isSelected: false, isHighlighted: false, row: 4, col: 0 },
+      { letter: "P", isSelected: false, isHighlighted: false, row: 4, col: 1 },
+      { letter: "N", isSelected: false, isHighlighted: false, row: 4, col: 2 },
+      { letter: "C", isSelected: false, isHighlighted: false, row: 4, col: 3 },
+      { letter: "T", isSelected: false, isHighlighted: false, row: 4, col: 4 },
+      { letter: "I", isSelected: false, isHighlighted: false, row: 4, col: 5 },
+    ],
+    [
+      { letter: "S", isSelected: false, isHighlighted: false, row: 5, col: 0 },
+      { letter: "O", isSelected: false, isHighlighted: false, row: 5, col: 1 },
+      { letter: "A", isSelected: false, isHighlighted: false, row: 5, col: 2 },
+      { letter: "F", isSelected: false, isHighlighted: false, row: 5, col: 3 },
+      { letter: "R", isSelected: false, isHighlighted: false, row: 5, col: 4 },
+      { letter: "U", isSelected: false, isHighlighted: false, row: 5, col: 5 },
+    ],
+    [
+      { letter: "E", isSelected: false, isHighlighted: false, row: 6, col: 0 },
+      { letter: "E", isSelected: false, isHighlighted: false, row: 6, col: 1 },
+      { letter: "P", isSelected: false, isHighlighted: false, row: 6, col: 2 },
+      { letter: "N", isSelected: false, isHighlighted: false, row: 6, col: 3 },
+      { letter: "P", isSelected: false, isHighlighted: false, row: 6, col: 4 },
+      { letter: "S", isSelected: false, isHighlighted: false, row: 6, col: 5 },
+    ],
+    [
+      { letter: "H", isSelected: false, isHighlighted: false, row: 7, col: 0 },
+      { letter: "C", isSelected: false, isHighlighted: false, row: 7, col: 1 },
+      { letter: "S", isSelected: false, isHighlighted: false, row: 7, col: 2 },
+      { letter: "C", isSelected: false, isHighlighted: false, row: 7, col: 3 },
+      { letter: "H", isSelected: false, isHighlighted: false, row: 7, col: 4 },
+      { letter: "I", isSelected: false, isHighlighted: false, row: 7, col: 5 },
+    ],
+  ];
+
   const [grid, setGrid] = useState<Cell[][]>(createInitialGrid());
   const [selectedCells, setSelectedCells] = useState<Position[]>([]);
   const [foundWords, setFoundWords] = useState<FoundWord[]>([]);
   const [wordAnimation, setWordAnimation] = useState<{
     word: string;
     isError: boolean;
+    isValidWord?: boolean;
+    message?: string;
   } | null>(null);
+  const [dictionary, setDictionary] = useState<Set<string>>(new Set());
 
   const theme = "The munchies";
+
+  // Load the dictionary when component mounts
+  useEffect(() => {
+    const loadDictionary = async () => {
+      try {
+        const response = await fetch("/data/enable1.txt");
+        const text = await response.text();
+        const words = new Set(
+          text.split("\n").map((word) => word.trim().toUpperCase())
+        );
+        setDictionary(words);
+      } catch (error) {
+        console.error("Failed to load dictionary:", error);
+      }
+    };
+
+    loadDictionary();
+  }, []);
 
   // Helper function to get cell center coordinates
   const getCellCenter = (row: number, col: number) => {
     const cellSize = 40; // w-10
     const gap = 8; // gap-2
-    const borderWidth = 2; // border width from border class
     const gridPadding = 4; // p-1
 
-    // Calculate total position including gaps, borders, and grid padding
+    // Calculate total position including gaps and grid padding
     const x = col * (cellSize + gap) + cellSize / 2 + gridPadding;
     const y = row * (cellSize + gap) + cellSize / 2 + gridPadding;
     return { x, y };
@@ -215,19 +235,41 @@ const WordPuzzle = () => {
     const upperWord = word.toUpperCase();
 
     // Validate word length
-    if (word.length < 3) {
+    if (word.length < 4) {
+      setWordAnimation({
+        word: upperWord,
+        isError: true,
+        isValidWord: false,
+        message: "Too short",
+      });
       updateGridState([], getAllHighlightedPositions());
       setSelectedCells([]);
       return;
     }
 
-    // Check if word is valid and not already found
-    const isValidWord = VALID_WORDS.has(upperWord);
+    // Check if word is already found
     const isAlreadyFound = foundWords.some(
       (fw) => fw.word.toUpperCase() === upperWord
     );
 
-    if (isValidWord && !isAlreadyFound) {
+    if (isAlreadyFound) {
+      setWordAnimation({
+        word: upperWord,
+        isError: true,
+        message: "Already found",
+      });
+      updateGridState([], getAllHighlightedPositions());
+      setSelectedCells([]);
+      return;
+    }
+
+    // Check if word is in puzzle's valid words
+    const isPuzzleWord = VALID_WORDS.has(upperWord);
+
+    // Check if word is in dictionary
+    const isValidWord = dictionary.has(upperWord);
+
+    if (isPuzzleWord) {
       // Add to found words
       const newFoundWords = [...foundWords, { word: upperWord, cells }];
       setFoundWords(newFoundWords);
@@ -238,10 +280,23 @@ const WordPuzzle = () => {
 
       // Show success animation
       setWordAnimation({ word: upperWord, isError: false });
+    } else if (isValidWord) {
+      // Show "valid word but not in puzzle" animation
+      setWordAnimation({
+        word: upperWord,
+        isError: true,
+        isValidWord: true,
+        message: "Valid word, but not in puzzle",
+      });
+      updateGridState([], getAllHighlightedPositions());
     } else {
-      // Show error animation
-      setWordAnimation({ word: upperWord, isError: true });
-      // Clear selections but maintain existing highlights
+      // Show "not a valid word" animation
+      setWordAnimation({
+        word: upperWord,
+        isError: true,
+        isValidWord: false,
+        message: "Not a valid word",
+      });
       updateGridState([], getAllHighlightedPositions());
     }
 
@@ -285,27 +340,36 @@ const WordPuzzle = () => {
       <div className="text-center mb-8 w-full">
         <h3 className="text-2xl mb-4">{theme}</h3>
         <div className="relative h-14">
-          {/* Show current selection */}
-          <div className="text-4xl font-bold text-blue-300 absolute w-full flex items-center justify-center">
-            {selectedCells.length > 0
-              ? selectedCells
-                  .map((pos) => grid[pos.row][pos.col].letter)
-                  .join("")
-              : ""}
+          {/* Combined word display */}
+          <div
+            className={`text-4xl font-bold absolute w-full flex items-center justify-center transition-all duration-200 flex-col
+              ${
+                wordAnimation
+                  ? wordAnimation.isError
+                    ? wordAnimation.isValidWord
+                      ? "text-yellow-500" // Valid word but not in puzzle
+                      : "text-red-500" // Not a valid word
+                    : "text-green-500" // Found a puzzle word!
+                  : "text-blue-300" // Current selection
+              }
+              ${wordAnimation?.isError ? "animate-shake" : ""}
+              ${wordAnimation ? "animate-fadeOut" : ""}
+            `}
+          >
+            {/* Show either animation word or current selection */}
+            {wordAnimation ? (
+              <>
+                {wordAnimation.word}
+                {wordAnimation.isError && wordAnimation.message && (
+                  <span className="text-base">({wordAnimation.message})</span>
+                )}
+              </>
+            ) : selectedCells.length > 0 ? (
+              selectedCells.map((pos) => grid[pos.row][pos.col].letter).join("")
+            ) : (
+              ""
+            )}
           </div>
-
-          {/* Show animated word on completion */}
-          {wordAnimation && (
-            <div
-              className={`text-4xl font-bold absolute w-full flex items-center justify-center transition-all duration-200
-                ${wordAnimation.isError ? "text-red-500" : "text-blue-300"}
-                ${wordAnimation.isError ? "animate-shake" : ""}
-                animate-fadeOut
-              `}
-            >
-              {wordAnimation.word}
-            </div>
-          )}
         </div>
       </div>
 
@@ -327,7 +391,7 @@ const WordPuzzle = () => {
             <button
               key={`${rowIndex}-${colIndex}`}
               className={`
-                w-10 h-10 rounded-full flex items-center justify-center
+                size-10 rounded-full flex items-center justify-center
                 text-lg font-bold cursor-pointer transition-all duration-200
                 border ${
                   cell.isSelected
