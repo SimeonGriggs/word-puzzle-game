@@ -1,85 +1,239 @@
 {
   "grid": [
     [
+      "E",
+      "T",
       "S",
-      "U",
-      "L",
-      "O",
-      "S",
-      "B"
+      "E",
+      "N",
+      "G"
     ],
     [
-      "B",
-      "R",
-      "L",
-      "L",
-      "U",
-      "E"
-    ],
-    [
-      "E",
-      "E",
+      "J",
+      "S",
+      "N",
       "B",
       "D",
-      "N",
+      "A"
+    ],
+    [
+      "S",
+      "O",
+      "L",
+      "O",
+      "L",
+      "L"
+    ],
+    [
+      "R",
+      "B",
+      "I",
+      "B",
+      "P",
       "S"
     ],
     [
       "I",
+      "E",
+      "R",
+      "O",
+      "H",
+      "S"
+    ],
+    [
+      "L",
+      "K",
       "N",
       "A",
-      "A",
-      "O",
-      "A"
+      "I",
+      "R"
     ],
     [
       "L",
       "C",
+      "C",
+      "P",
+      "N",
+      "A"
+    ],
+    [
       "S",
-      "G",
-      "I",
-      "S"
-    ],
-    [
-      "L",
-      "G",
-      "P",
-      "E",
-      "U",
-      "E"
-    ],
-    [
-      "A",
-      "R",
-      "E",
-      "Y",
+      "O",
+      "S",
+      "S",
       "B",
-      "D"
-    ],
-    [
-      "R",
-      "A",
-      "V",
-      "P",
-      "T",
-      "I"
+      "E"
     ]
   ],
   "words": [
     {
-      "word": "NEBULOSE",
+      "word": "DOLPHINS",
       "positions": [
         {
-          "row": 3,
-          "col": 1,
+          "row": 1,
+          "col": 4,
           "score": 8
         },
         {
           "row": 2,
-          "col": 1
+          "col": 3
+        },
+        {
+          "row": 2,
+          "col": 4
+        },
+        {
+          "row": 3,
+          "col": 4
+        },
+        {
+          "row": 4,
+          "col": 4
+        },
+        {
+          "row": 5,
+          "col": 4
+        },
+        {
+          "row": 6,
+          "col": 4
+        },
+        {
+          "row": 7,
+          "col": 3
+        }
+      ]
+    },
+    {
+      "word": "BILLS",
+      "positions": [
+        {
+          "row": 3,
+          "col": 1,
+          "score": 5
+        },
+        {
+          "row": 4,
+          "col": 0
+        },
+        {
+          "row": 5,
+          "col": 0
+        },
+        {
+          "row": 6,
+          "col": 0
+        },
+        {
+          "row": 7,
+          "col": 0
+        }
+      ]
+    },
+    {
+      "word": "BENGALS",
+      "positions": [
+        {
+          "row": 1,
+          "col": 3,
+          "score": 4
+        },
+        {
+          "row": 0,
+          "col": 3
+        },
+        {
+          "row": 0,
+          "col": 4
+        },
+        {
+          "row": 0,
+          "col": 5
         },
         {
           "row": 1,
+          "col": 5
+        },
+        {
+          "row": 2,
+          "col": 5
+        },
+        {
+          "row": 3,
+          "col": 5
+        }
+      ]
+    },
+    {
+      "word": "PACKERS",
+      "positions": [
+        {
+          "row": 6,
+          "col": 3,
+          "score": 4
+        },
+        {
+          "row": 5,
+          "col": 3
+        },
+        {
+          "row": 6,
+          "col": 2
+        },
+        {
+          "row": 5,
+          "col": 1
+        },
+        {
+          "row": 4,
+          "col": 1
+        },
+        {
+          "row": 3,
+          "col": 0
+        },
+        {
+          "row": 2,
+          "col": 0
+        }
+      ]
+    },
+    {
+      "word": "BEARS",
+      "positions": [
+        {
+          "row": 7,
+          "col": 4,
+          "score": 2
+        },
+        {
+          "row": 7,
+          "col": 5
+        },
+        {
+          "row": 6,
+          "col": 5
+        },
+        {
+          "row": 5,
+          "col": 5
+        },
+        {
+          "row": 4,
+          "col": 5
+        }
+      ]
+    },
+    {
+      "word": "JETS",
+      "positions": [
+        {
+          "row": 1,
+          "col": 0,
+          "score": 2
+        },
+        {
+          "row": 0,
           "col": 0
         },
         {
@@ -89,83 +243,15 @@
         {
           "row": 0,
           "col": 2
-        },
-        {
-          "row": 0,
-          "col": 3
-        },
-        {
-          "row": 0,
-          "col": 4
-        },
-        {
-          "row": 1,
-          "col": 5
         }
       ]
     },
     {
-      "word": "GRAVY",
+      "word": "LIONS",
       "positions": [
         {
-          "row": 5,
-          "col": 1,
-          "score": 8
-        },
-        {
-          "row": 6,
-          "col": 1
-        },
-        {
-          "row": 7,
-          "col": 1
-        },
-        {
-          "row": 7,
-          "col": 2
-        },
-        {
-          "row": 6,
-          "col": 3
-        }
-      ]
-    },
-    {
-      "word": "BUSIES",
-      "positions": [
-        {
-          "row": 6,
-          "col": 4,
-          "score": 7
-        },
-        {
-          "row": 5,
-          "col": 4
-        },
-        {
-          "row": 4,
-          "col": 5
-        },
-        {
-          "row": 4,
-          "col": 4
-        },
-        {
-          "row": 5,
-          "col": 3
-        },
-        {
-          "row": 4,
-          "col": 2
-        }
-      ]
-    },
-    {
-      "word": "CABANAS",
-      "positions": [
-        {
-          "row": 4,
-          "col": 1,
+          "row": 2,
+          "col": 2,
           "score": 5
         },
         {
@@ -174,129 +260,49 @@
         },
         {
           "row": 2,
+          "col": 1
+        },
+        {
+          "row": 1,
           "col": 2
-        },
-        {
-          "row": 3,
-          "col": 3
-        },
-        {
-          "row": 2,
-          "col": 4
-        },
-        {
-          "row": 3,
-          "col": 5
-        },
-        {
-          "row": 2,
-          "col": 5
-        }
-      ]
-    },
-    {
-      "word": "PEPTIDE",
-      "positions": [
-        {
-          "row": 5,
-          "col": 2,
-          "score": 1
-        },
-        {
-          "row": 6,
-          "col": 2
-        },
-        {
-          "row": 7,
-          "col": 3
-        },
-        {
-          "row": 7,
-          "col": 4
-        },
-        {
-          "row": 7,
-          "col": 5
-        },
-        {
-          "row": 6,
-          "col": 5
-        },
-        {
-          "row": 5,
-          "col": 5
-        }
-      ]
-    },
-    {
-      "word": "RALLIERS",
-      "positions": [
-        {
-          "row": 7,
-          "col": 0,
-          "score": 1
-        },
-        {
-          "row": 6,
-          "col": 0
-        },
-        {
-          "row": 5,
-          "col": 0
-        },
-        {
-          "row": 4,
-          "col": 0
-        },
-        {
-          "row": 3,
-          "col": 0
-        },
-        {
-          "row": 2,
-          "col": 0
         },
         {
           "row": 1,
           "col": 1
-        },
-        {
-          "row": 0,
-          "col": 0
         }
       ]
     },
     {
-      "word": "BULLDOG",
+      "word": "BRONCOS",
       "positions": [
         {
-          "row": 0,
-          "col": 5,
-          "score": 1
-        },
-        {
-          "row": 1,
-          "col": 4
-        },
-        {
-          "row": 1,
-          "col": 3
-        },
-        {
-          "row": 1,
-          "col": 2
-        },
-        {
-          "row": 2,
-          "col": 3
-        },
-        {
           "row": 3,
-          "col": 4
+          "col": 3,
+          "score": 2
+        },
+        {
+          "row": 4,
+          "col": 2
         },
         {
           "row": 4,
           "col": 3
+        },
+        {
+          "row": 5,
+          "col": 2
+        },
+        {
+          "row": 6,
+          "col": 1
+        },
+        {
+          "row": 7,
+          "col": 1
+        },
+        {
+          "row": 7,
+          "col": 2
         }
       ]
     }

@@ -26,9 +26,10 @@ interface Props {
     word: string;
     path: { row: number; col: number }[];
   }[];
+  theme: string;
 }
 
-const WordPuzzle = ({ grid, validWords, solutions }: Props) => {
+const WordPuzzle = ({ grid, validWords, solutions, theme }: Props) => {
   const createInitialGrid = (): Cell[][] => {
     const centerRow = 3.5;
     const centerCol = 2.5;
@@ -327,13 +328,12 @@ const WordPuzzle = ({ grid, validWords, solutions }: Props) => {
 
   return (
     <div className="max-w-4xl flex flex-col items-center mx-auto">
-      <div className="flex flex-col items-center mb-8">
-        <div className="relative w-full">
-          <div className="text-center mb-8 w-full">
-            <div className="relative h-14">
-              {/* Combined word display */}
-              <div
-                className={`text-4xl font-bold absolute w-full flex items-center justify-center transition-all duration-200 flex-col
+      <h1 className="text-4xl font-bold mb-2">{theme}</h1>
+      <div className="flex flex-col items-center mb-8 w-full">
+        <div className="relative w-full text-center flex items-center justify-center h-14">
+          {/* Combined word display */}
+          <div
+            className={`text-4xl font-bold absolute flex items-center justify-center transition-all duration-200 flex-col
                   ${
                     wordAnimation
                       ? wordAnimation.isError
@@ -346,26 +346,22 @@ const WordPuzzle = ({ grid, validWords, solutions }: Props) => {
                   ${wordAnimation?.isError ? "animate-shake" : ""}
                   ${wordAnimation ? "animate-fadeOut" : ""}
                 `}
-              >
-                {/* Show either animation word or current selection */}
-                {wordAnimation ? (
-                  <>
-                    {wordAnimation.word}
-                    {wordAnimation.isError && wordAnimation.message && (
-                      <span className="text-base">
-                        ({wordAnimation.message})
-                      </span>
-                    )}
-                  </>
-                ) : selectedCells.length > 0 ? (
-                  selectedCells
-                    .map((pos) => gridState[pos.row][pos.col].letter)
-                    .join("")
-                ) : (
-                  ""
+          >
+            {/* Show either animation word or current selection */}
+            {wordAnimation ? (
+              <>
+                {wordAnimation.word}
+                {wordAnimation.isError && wordAnimation.message && (
+                  <span className="text-base">({wordAnimation.message})</span>
                 )}
-              </div>
-            </div>
+              </>
+            ) : selectedCells.length > 0 ? (
+              selectedCells
+                .map((pos) => gridState[pos.row][pos.col].letter)
+                .join("")
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
