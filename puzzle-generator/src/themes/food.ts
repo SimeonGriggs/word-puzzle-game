@@ -1,0 +1,62 @@
+import { Theme } from "../types";
+
+export const foodTheme: Theme = {
+  name: "Food and Snacks",
+  description: "Words related to various foods and snacks",
+  words: [
+    // 4 letters
+    "CAKE",
+    "NUTS",
+    "PEAR",
+    "FISH",
+    "MEAT",
+    "TACO",
+    "RICE",
+    "PORK",
+    "BEEF",
+    "SOUP",
+    "CORN",
+    "LIME",
+    "KIWI",
+    "PLUM",
+    "ROLL",
+    "MILK",
+    "BEAN",
+    "EGGS",
+    "TUNA",
+    "MINT",
+    // 5 letters
+    "PIZZA",
+    "PASTA",
+    "SALAD",
+    "SUSHI",
+    "BREAD",
+    "CANDY",
+    "APPLE",
+    "GRAPE",
+    "PEACH",
+    "CHIPS",
+    "TOAST",
+    // 6 letters
+    "COOKIE",
+    "BURGER",
+    "CHEESE",
+    "BANANA",
+    "ORANGE",
+    "MUFFIN",
+    // 7 letters
+    "POPCORN",
+    "GRANOLA",
+    "YOGHURT",
+    "NACHOS",
+    "PRETZEL",
+    // 8 letters
+    "SANDWICH",
+    "PANCAKES",
+    "ICECREAM",
+    // Longer words
+    "CHOCOLATE",
+    "CROISSANT",
+    "BLUEBERRY",
+  ],
+};

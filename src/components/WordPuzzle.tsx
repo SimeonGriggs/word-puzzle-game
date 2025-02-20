@@ -6,6 +6,7 @@ interface Cell {
   isHighlighted: boolean;
   row: number;
   col: number;
+  distanceFromCenter: number;
 }
 
 interface Position {
@@ -18,87 +19,35 @@ interface FoundWord {
   cells: Position[];
 }
 
-// Valid words for the "munchies" theme
-const VALID_WORDS = new Set([
-  "GRANOLA",
-  "POPCORN",
-  "CHEESE",
-  "SNACKTIME",
-  "NUTS",
-  "CANDY",
-  "FRUIT",
-  "CHIPS",
-]);
+interface Props {
+  grid: string[][];
+  validWords: string[];
+  solutions: {
+    word: string;
+    path: { row: number; col: number }[];
+  }[];
+}
 
-const WordPuzzle = () => {
-  const createInitialGrid = (): Cell[][] => [
-    [
-      { letter: "N", isSelected: false, isHighlighted: false, row: 0, col: 0 },
-      { letter: "O", isSelected: false, isHighlighted: false, row: 0, col: 1 },
-      { letter: "A", isSelected: false, isHighlighted: false, row: 0, col: 2 },
-      { letter: "M", isSelected: false, isHighlighted: false, row: 0, col: 3 },
-      { letter: "E", isSelected: false, isHighlighted: false, row: 0, col: 4 },
-      { letter: "U", isSelected: false, isHighlighted: false, row: 0, col: 5 },
-    ],
-    [
-      { letter: "A", isSelected: false, isHighlighted: false, row: 1, col: 0 },
-      { letter: "L", isSelected: false, isHighlighted: false, row: 1, col: 1 },
-      { letter: "I", isSelected: false, isHighlighted: false, row: 1, col: 2 },
-      { letter: "S", isSelected: false, isHighlighted: false, row: 1, col: 3 },
-      { letter: "T", isSelected: false, isHighlighted: false, row: 1, col: 4 },
-      { letter: "N", isSelected: false, isHighlighted: false, row: 1, col: 5 },
-    ],
-    [
-      { letter: "O", isSelected: false, isHighlighted: false, row: 2, col: 0 },
-      { letter: "R", isSelected: false, isHighlighted: false, row: 2, col: 1 },
-      { letter: "G", isSelected: false, isHighlighted: false, row: 2, col: 2 },
-      { letter: "T", isSelected: false, isHighlighted: false, row: 2, col: 3 },
-      { letter: "C", isSelected: false, isHighlighted: false, row: 2, col: 4 },
-      { letter: "A", isSelected: false, isHighlighted: false, row: 2, col: 5 },
-    ],
-    [
-      { letter: "C", isSelected: false, isHighlighted: false, row: 3, col: 0 },
-      { letter: "R", isSelected: false, isHighlighted: false, row: 3, col: 1 },
-      { letter: "K", isSelected: false, isHighlighted: false, row: 3, col: 2 },
-      { letter: "Y", isSelected: false, isHighlighted: false, row: 3, col: 3 },
-      { letter: "D", isSelected: false, isHighlighted: false, row: 3, col: 4 },
-      { letter: "N", isSelected: false, isHighlighted: false, row: 3, col: 5 },
-    ],
-    [
-      { letter: "E", isSelected: false, isHighlighted: false, row: 4, col: 0 },
-      { letter: "P", isSelected: false, isHighlighted: false, row: 4, col: 1 },
-      { letter: "N", isSelected: false, isHighlighted: false, row: 4, col: 2 },
-      { letter: "C", isSelected: false, isHighlighted: false, row: 4, col: 3 },
-      { letter: "T", isSelected: false, isHighlighted: false, row: 4, col: 4 },
-      { letter: "I", isSelected: false, isHighlighted: false, row: 4, col: 5 },
-    ],
-    [
-      { letter: "S", isSelected: false, isHighlighted: false, row: 5, col: 0 },
-      { letter: "O", isSelected: false, isHighlighted: false, row: 5, col: 1 },
-      { letter: "A", isSelected: false, isHighlighted: false, row: 5, col: 2 },
-      { letter: "F", isSelected: false, isHighlighted: false, row: 5, col: 3 },
-      { letter: "R", isSelected: false, isHighlighted: false, row: 5, col: 4 },
-      { letter: "U", isSelected: false, isHighlighted: false, row: 5, col: 5 },
-    ],
-    [
-      { letter: "E", isSelected: false, isHighlighted: false, row: 6, col: 0 },
-      { letter: "E", isSelected: false, isHighlighted: false, row: 6, col: 1 },
-      { letter: "P", isSelected: false, isHighlighted: false, row: 6, col: 2 },
-      { letter: "N", isSelected: false, isHighlighted: false, row: 6, col: 3 },
-      { letter: "P", isSelected: false, isHighlighted: false, row: 6, col: 4 },
-      { letter: "S", isSelected: false, isHighlighted: false, row: 6, col: 5 },
-    ],
-    [
-      { letter: "H", isSelected: false, isHighlighted: false, row: 7, col: 0 },
-      { letter: "C", isSelected: false, isHighlighted: false, row: 7, col: 1 },
-      { letter: "S", isSelected: false, isHighlighted: false, row: 7, col: 2 },
-      { letter: "C", isSelected: false, isHighlighted: false, row: 7, col: 3 },
-      { letter: "H", isSelected: false, isHighlighted: false, row: 7, col: 4 },
-      { letter: "I", isSelected: false, isHighlighted: false, row: 7, col: 5 },
-    ],
-  ];
+const WordPuzzle = ({ grid, validWords, solutions }: Props) => {
+  const createInitialGrid = (): Cell[][] => {
+    const centerRow = 3.5;
+    const centerCol = 2.5;
 
-  const [grid, setGrid] = useState<Cell[][]>(createInitialGrid());
+    return grid.map((row, rowIndex) =>
+      row.map((letter, colIndex) => ({
+        letter: letter || " ", // Handle empty strings in grid
+        isSelected: false,
+        isHighlighted: false,
+        row: rowIndex,
+        col: colIndex,
+        distanceFromCenter: Math.sqrt(
+          Math.pow(rowIndex - centerRow, 2) + Math.pow(colIndex - centerCol, 2)
+        ),
+      }))
+    );
+  };
+
+  const [gridState, setGridState] = useState<Cell[][]>(createInitialGrid());
   const [selectedCells, setSelectedCells] = useState<Position[]>([]);
   const [foundWords, setFoundWords] = useState<FoundWord[]>([]);
   const [wordAnimation, setWordAnimation] = useState<{
@@ -108,8 +57,9 @@ const WordPuzzle = () => {
     message?: string;
   } | null>(null);
   const [dictionary, setDictionary] = useState<Set<string>>(new Set());
-
-  const theme = "The munchies";
+  const [isPuzzleSolved, setIsPuzzleSolved] = useState(false);
+  const [showWordList, setShowWordList] = useState(false);
+  const [highlightedWord, setHighlightedWord] = useState<string | null>(null);
 
   // Load the dictionary when component mounts
   useEffect(() => {
@@ -198,8 +148,8 @@ const WordPuzzle = () => {
     selections: Position[] = [],
     highlights: Position[] = []
   ) => {
-    setGrid(
-      grid.map((row) =>
+    setGridState(
+      gridState.map((row) =>
         row.map((cell) => ({
           ...cell,
           isSelected: selections.some(
@@ -213,6 +163,26 @@ const WordPuzzle = () => {
     );
   };
 
+  const handleWordClick = (word: string) => {
+    // If word is already highlighted, unhighlight it
+    if (highlightedWord === word) {
+      setHighlightedWord(null);
+      updateGridState([], getAllHighlightedPositions());
+      return;
+    }
+
+    // Find the solution path for this word
+    const solution = solutions.find((s) => s.word === word);
+    if (solution) {
+      setHighlightedWord(word);
+      // Highlight just this word's path
+      const foundWordPaths = foundWords
+        .filter((fw) => fw.word !== word)
+        .flatMap((fw) => fw.cells);
+      updateGridState([], [...foundWordPaths, ...solution.path]);
+    }
+  };
+
   // Get all highlighted positions from found words
   const getAllHighlightedPositions = (additionalPositions: Position[] = []) => {
     const positions: Position[] = [];
@@ -220,14 +190,22 @@ const WordPuzzle = () => {
     if (additionalPositions.length > 0) {
       positions.push(...additionalPositions);
     }
+    // Add currently highlighted word path
+    if (highlightedWord) {
+      const solution = solutions.find((s) => s.word === highlightedWord);
+      if (solution) {
+        positions.push(...solution.path);
+      }
+    }
     return positions;
   };
 
   const resetGame = () => {
-    setGrid(createInitialGrid());
+    setGridState(createInitialGrid());
     setSelectedCells([]);
     setFoundWords([]);
     setWordAnimation(null);
+    setIsPuzzleSolved(false);
   };
 
   // Handle word submission and validation
@@ -264,7 +242,7 @@ const WordPuzzle = () => {
     }
 
     // Check if word is in puzzle's valid words
-    const isPuzzleWord = VALID_WORDS.has(upperWord);
+    const isPuzzleWord = validWords.includes(upperWord);
 
     // Check if word is in dictionary
     const isValidWord = dictionary.has(upperWord);
@@ -305,10 +283,15 @@ const WordPuzzle = () => {
   };
 
   const handleCellClick = (row: number, col: number) => {
+    // Skip empty cells
+    if (!gridState[row][col].letter.trim()) {
+      return;
+    }
+
     // If clicking the last selected cell, submit the word
     if (selectedCells.some((cell) => cell.row === row && cell.col === col)) {
       const selectedWord = selectedCells
-        .map((pos) => grid[pos.row][pos.col].letter)
+        .map((pos) => gridState[pos.row][pos.col].letter)
         .join("");
       submitWord(selectedWord, selectedCells);
       return;
@@ -335,40 +318,54 @@ const WordPuzzle = () => {
     setSelectedCells(newSelection);
   };
 
+  useEffect(() => {
+    // Check if all valid words have been found
+    if (foundWords.length === validWords.length) {
+      setIsPuzzleSolved(true);
+    }
+  }, [foundWords, validWords]);
+
   return (
-    <div className="flex flex-col items-center p-5 max-w-2xl mx-auto">
-      <div className="text-center mb-8 w-full">
-        <h3 className="text-2xl mb-4">{theme}</h3>
-        <div className="relative h-14">
-          {/* Combined word display */}
-          <div
-            className={`text-4xl font-bold absolute w-full flex items-center justify-center transition-all duration-200 flex-col
-              ${
-                wordAnimation
-                  ? wordAnimation.isError
-                    ? wordAnimation.isValidWord
-                      ? "text-yellow-500" // Valid word but not in puzzle
-                      : "text-red-500" // Not a valid word
-                    : "text-green-500" // Found a puzzle word!
-                  : "text-blue-300" // Current selection
-              }
-              ${wordAnimation?.isError ? "animate-shake" : ""}
-              ${wordAnimation ? "animate-fadeOut" : ""}
-            `}
-          >
-            {/* Show either animation word or current selection */}
-            {wordAnimation ? (
-              <>
-                {wordAnimation.word}
-                {wordAnimation.isError && wordAnimation.message && (
-                  <span className="text-base">({wordAnimation.message})</span>
+    <div className="max-w-4xl flex flex-col items-center mx-auto">
+      <div className="flex flex-col items-center mb-8">
+        <div className="relative w-full">
+          <div className="text-center mb-8 w-full">
+            <div className="relative h-14">
+              {/* Combined word display */}
+              <div
+                className={`text-4xl font-bold absolute w-full flex items-center justify-center transition-all duration-200 flex-col
+                  ${
+                    wordAnimation
+                      ? wordAnimation.isError
+                        ? wordAnimation.isValidWord
+                          ? "text-yellow-500" // Valid word but not in puzzle
+                          : "text-red-500" // Not a valid word
+                        : "text-green-500" // Found a puzzle word!
+                      : "text-blue-300" // Current selection
+                  }
+                  ${wordAnimation?.isError ? "animate-shake" : ""}
+                  ${wordAnimation ? "animate-fadeOut" : ""}
+                `}
+              >
+                {/* Show either animation word or current selection */}
+                {wordAnimation ? (
+                  <>
+                    {wordAnimation.word}
+                    {wordAnimation.isError && wordAnimation.message && (
+                      <span className="text-base">
+                        ({wordAnimation.message})
+                      </span>
+                    )}
+                  </>
+                ) : selectedCells.length > 0 ? (
+                  selectedCells
+                    .map((pos) => gridState[pos.row][pos.col].letter)
+                    .join("")
+                ) : (
+                  ""
                 )}
-              </>
-            ) : selectedCells.length > 0 ? (
-              selectedCells.map((pos) => grid[pos.row][pos.col].letter).join("")
-            ) : (
-              ""
-            )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -386,7 +383,7 @@ const WordPuzzle = () => {
           {generatePaths()}
         </svg>
 
-        {grid.map((row, rowIndex) =>
+        {gridState.map((row, rowIndex) =>
           row.map((cell, colIndex) => (
             <button
               key={`${rowIndex}-${colIndex}`}
@@ -400,7 +397,15 @@ const WordPuzzle = () => {
                     ? "bg-green-200 border-green-200 text-green-900"
                     : "bg-white hover:bg-gray-50 border-gray-200"
                 }
+                ${isPuzzleSolved ? "animate-victory-pulse" : ""}
               `}
+              style={
+                isPuzzleSolved
+                  ? {
+                      animationDelay: `${cell.distanceFromCenter * 100}ms`,
+                    }
+                  : undefined
+              }
               data-selected={cell.isSelected.toString()}
               data-highlighted={cell.isHighlighted.toString()}
               data-position={`${rowIndex * 6 + colIndex}`}
@@ -420,7 +425,61 @@ const WordPuzzle = () => {
         >
           Reset Game
         </button>
+        <button
+          className="px-6 py-3 text-base border-2 border-blue-200 text-blue-600 rounded-full
+                     hover:bg-blue-50 transition-colors duration-200"
+          onClick={() => {
+            // Reset game and show solution paths
+            resetGame();
+            const solutionWords = solutions.map((solution) => ({
+              word: solution.word,
+              cells: solution.path,
+            }));
+            setFoundWords(solutionWords);
+
+            // Update grid state to highlight all solution cells
+            const allSolutionCells = solutions.flatMap(
+              (solution) => solution.path
+            );
+            updateGridState([], allSolutionCells);
+
+            setIsPuzzleSolved(true);
+          }}
+        >
+          Solve
+        </button>
+        <button
+          className="px-6 py-3 text-base border-2 border-purple-200 text-purple-600 rounded-full
+                     hover:bg-purple-50 transition-colors duration-200"
+          onClick={() => setShowWordList(!showWordList)}
+        >
+          {showWordList ? "Hide Words" : "Show Words"}
+        </button>
       </div>
+
+      {showWordList && (
+        <div className="mt-8 p-4 border-2 border-purple-100 rounded-lg">
+          <h4 className="text-lg font-semibold mb-3">Valid Words:</h4>
+          <div className="grid grid-cols-3 gap-2">
+            {validWords.map((word, index) => (
+              <button
+                key={index}
+                onClick={() => handleWordClick(word)}
+                className={`p-2 rounded transition-all duration-200 text-left
+                  ${
+                    foundWords.some((fw) => fw.word === word)
+                      ? "bg-green-100 text-green-800 hover:bg-green-200"
+                      : "bg-gray-50 hover:bg-gray-100"
+                  }
+                  ${highlightedWord === word ? "ring-2 ring-blue-400" : ""}
+                `}
+              >
+                {word}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
